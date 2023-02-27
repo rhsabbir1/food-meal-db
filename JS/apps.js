@@ -10,7 +10,7 @@ const showDAta = (data) => {
     cardContainer.innerHTML = '';
     // console.log(data)
     data.forEach(food => {
-        console.log(food)
+        // console.log(food)
         const creatDiv = document.createElement('div')
         creatDiv.innerHTML = `
         <div class="card h-100">
@@ -32,7 +32,7 @@ const showDAta = (data) => {
 
 document.getElementById('search-btn').addEventListener('click', function () {
     const searchInput = document.getElementById('searchInput').value;
-    console.log(searchInput)
+    // console.log(searchInput)
     loadMealDb(searchInput)
 })
 
@@ -40,12 +40,17 @@ const loadModalDetail = (id) => {
     const URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
     fetch(URL)
         .then(res => res.json())
-        .then(data => console.log(data.meals[0]))
+        .then(data => showDetailsModal(data.meals[0]))
 }
 
-const showDetailsModal = () => {
+const showDetailsModal = (data) => {
+    console.log(data)
+    document.getElementById('shodDetailsModalLabel').innerText = data.strMeal;
+    const modalBody = document.getElementById('modal-body').innerHTML=`
+        <img class="img-fluid" src="${data.strMealThumb}" alt="">
+        <h3>Str Tags : ${data.strTags}</h3>
 
+    `
 }
-
 
 loadMealDb('fish')
