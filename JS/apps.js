@@ -5,10 +5,10 @@ const loadMealDb = () => {
         .then(data => showDAta(data.meals))
 }
 const showDAta = (data) => {
-    const cardContainer = document .getElementById('food-card-group')
+    const cardContainer = document.getElementById('food-card-group')
     data.forEach(food => {
         console.log(food)
-        const creatDiv = document.createElement('div') 
+        const creatDiv = document.createElement('div')
         creatDiv.innerHTML = `
         <div class="card h-100">
             <img src="${food.strMealThumb}" class="card-img-top" alt="...">
@@ -22,5 +22,11 @@ const showDAta = (data) => {
         cardContainer.appendChild(creatDiv)
     });
 }
+
+document.getElementById('search-btn').addEventListener('click', function () {
+    const searchInput = document.getElementById('searchInput').value;
+    console.log(searchInput)
+})
+
 
 loadMealDb()
