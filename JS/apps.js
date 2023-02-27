@@ -1,12 +1,15 @@
 // console.log('connect')
-const loadMealDb = () => {
-    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=fish')
+const loadMealDb = (searchInput) => {
+    const URL =`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInput}`;
+    fetch(URL)
         .then(res => res.json())
         .then(data => showDAta(data.meals))
 }
 const showDAta = (data) => {
     const cardContainer = document.getElementById('food-card-group')
-    data.forEach(food => {
+    cardContainer.innerHTML = '';
+    console.log(data)
+    data.forEach( food => {
         console.log(food)
         const creatDiv = document.createElement('div')
         creatDiv.innerHTML = `
@@ -26,7 +29,8 @@ const showDAta = (data) => {
 document.getElementById('search-btn').addEventListener('click', function () {
     const searchInput = document.getElementById('searchInput').value;
     console.log(searchInput)
+    loadMealDb(searchInput)
 })
 
 
-loadMealDb()
+loadMealDb('fish')
